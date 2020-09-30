@@ -14,7 +14,8 @@ app.use(async (ctx, next) => {
     console.log('mid1 right', ctx.response.body);
     console.log(Date.now() - ctx.time); //[寫法a]結束時間,減去起始時間則能得出所有流程的時間
     const rt = Date.now() - time; //[寫法b] rt為response time
-    ctx.set('x-rt', rt); //[寫法b] 回傳response time
+    ctx.set('X-RT', rt); //[寫法b] 回傳response time
+    //如果不是http協議的參數, 前面會多加一個[X], 表extension
 });
 
 app.use(async (ctx, next) => {
