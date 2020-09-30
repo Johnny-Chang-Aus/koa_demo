@@ -6,8 +6,9 @@ const app = new Koa(); //函數第一個字母一定要大寫
 app.use(async (ctx, next) => {
     //left side of onion
     console.log('mid1 left', ctx.request.url);
-    ctx.time = Date.now(); //[寫法a]起始時間
-    const time = Date.now(); //[寫法b]起始時間
+    // 以下a, b兩種寫法計算服務器響應時間, 一定要寫在第一層(洋蔥的最外層)
+    ctx.time = Date.now(); //[寫法a]提取起始時間
+    const time = Date.now(); //[寫法b]提取起始時間
     await next(); //利用這個中間鍵統計所有流程的執行時間
     //right side of onion
     console.log('mid1 right', ctx.response.body);
